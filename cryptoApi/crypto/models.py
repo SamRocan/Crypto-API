@@ -2,8 +2,10 @@ from django.db import models
 
 # Create your models here.
 class Currency(models.Model):
+    rank = models.IntegerField()
+    image = models.CharField(max_length=500)
     name = models.CharField(max_length=255)
-    symbol = models.CharField(max_length=5)
+    symbol = models.CharField(max_length=10)
     market_cap = models.IntegerField()
     market_share = models.FloatField()
     price = models.FloatField()
