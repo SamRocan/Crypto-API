@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'crypto'
 ]
 
 MIDDLEWARE = [
@@ -116,6 +118,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+CELERY_BROKER_URL = 'amqp://localhost'
 
 STATIC_URL = '/static/'
 
