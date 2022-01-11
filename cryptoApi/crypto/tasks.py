@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 from .models import Currency
 
+# to run worker
+# celery -A cryptoApi worker --loglevel=info
+
 @shared_task
 def create_currency():
     print("Creating crypto currency data")
