@@ -16,5 +16,5 @@ class Currency(models.Model):
         verbose_name_plural = 'Currencies'
 
     def __str__(self):
-        return self.name + "(" + self.symbol + ")"
+        return self.name + " (" + self.symbol + ")"
 

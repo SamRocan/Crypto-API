@@ -16,10 +16,20 @@ def create_currency():
     currencies = soup.find("tbody").find_all("tr")
 
 
-    for i in range(len(currencies)):
+    for i in range(10): #change to len(currencies) to get all
         currency_obj = []
         currency = currencies[i].find_all("td")
-        currency_obj.append(int(currency[0].text))
+        print(currency)
+        rank = int(currency[0].text)
+        image = currency[1].find("img")['src']
+        name = currency[1].text.split()[0]
+        symbol = currency[1].text.split()[1][1:len(currency[1].text.split()[1])-1]
+        market_cap = int((currency[2].text).replace(',',''))
+        market_share = float(currency[3].text[:len(currency[3].text)-1])
+        price = float(currency[4].text[1:len(currency[4].text)].replace(',',''))
+        day_change = float(currency[5].text)
+
+        '''currency_obj.append(int(currency[0].text))
         currency_obj.append(currency[1].find("img")['src'])
         currency_obj.append(currency[1].text.split()[0])
         currency_obj.append(currency[1].text.split()[1][1:len(currency[1].text.split()[1])-1])
@@ -27,17 +37,17 @@ def create_currency():
         currency_obj.append(float(currency[3].text[:len(currency[3].text)-1]))
         currency_obj.append(float(currency[4].text[1:len(currency[4].text)].replace(',','')))
         currency_obj.append(float(currency[5].text))
-        print(currency_obj)
+        print(currency_obj)'''
 
         Currency.objects.create(
-            rank=currency_obj[0],
-            image=currency_obj[1],
-            name=currency_obj[2],
-            symbol=currency_obj[3],
-            market_cap=currency_obj[4],
-            market_share=currency_obj[5],
-            price=currency_obj[6],
-            day_change=currency_obj[7]
+            rank=rank,
+            image=image,
+            name=name,
+            symbol=symbol,
+            market_cap=market_cap,
+            market_share=market_share,
+            price=price,
+            day_change=day_change
         )
         sleep(5)
 
@@ -50,29 +60,21 @@ def update_currency():
     currencies = soup.find("tbody").find_all("tr")
 
 
-    for i in range(len(currencies)):
+    for i in range(10): #change to len(currencies) to get all
         currency_obj = []
         currency = currencies[i].find_all("td")
-        currency_obj.append(int(currency[0].text))
-        currency_obj.append(currency[1].find("img")['src'])
-        currency_obj.append(currency[1].text.split()[0])
-        currency_obj.append(currency[1].text.split()[1][1:len(currency[1].text.split()[1])-1])
-        currency_obj.append(int((currency[2].text).replace(',','')))
-        currency_obj.append(float(currency[3].text[:len(currency[3].text)-1]))
-        currency_obj.append(float(currency[4].text[1:len(currency[4].text)].replace(',','')))
-        currency_obj.append(float(currency[5].text))
-        print(currency_obj)
+        rank = int(currency[0].text)
+        image = currency[1].find("img")['src']
+        name = currency[1].text.split()[0]
+        symbol = currency[1].text.split()[1][1:len(currency[1].text.split()[1])-1]
+        market_cap = int((currency[2].text).replace(',',''))
+        market_share = float(currency[3].text[:len(currency[3].text)-1])
+        price = float(currency[4].text[1:len(currency[4].text)].replace(',',''))
+        day_change = float(currency[5].text)
 
-        Currency.objects.filter(rank=currency_obj[0]).update(
-            rank=currency_obj[0],
-            image=currency_obj[1],
-            name=currency_obj[2],
-            symbol=currency_obj[3],
-            market_cap=currency_obj[4],
-            market_share=currency_obj[5],
-            price=currency_obj[6],
-            day_change=currency_obj[7]
-        )
+        data = {'rank':rank, 'image':image, 'name':name, 'symbol':symbol, 'market_cap':market_cap, 'market_share':market_share, 'price':price, 'day_change':day_change}
+
+        Currency.objects.filter(rank=rank).update(**data)
 
 create_currency()
 
