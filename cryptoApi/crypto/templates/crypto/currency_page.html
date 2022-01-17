@@ -2,7 +2,21 @@
 {% extends 'crypto/base.html' %}
 {% load static %}
 {% block content %}
-<h1>{{currency.name}}</h1>
+<h1>{{currency.name}} <img src="{{currency.image}}" width="64" height="64"></h1>
+<ul>
+    <li>#{{currency.rank}} - {{currency.name}}</li>
+    <li>Symbol: {{currency.symbol}}</li>
+    <li>Market Cap: ${{currency.market_cap}}</li>
+    <li>Market Share: {{currency.market_share | floatformat:2}}%</li>
+    <li>Price: ${{currency.price | floatformat:2}}</li>
+    {% if currency.day_change > 0%}
+    <li style="color: lightgreen">Day Change: {{currency.day_change | floatformat:2}}%</li>
+    {% elif currency.day_change < 0%}
+    <li style="color: indianred">Day Change: {{currency.day_change | floatformat:2}}%</li>
+    {% else %}
+    <li>Day Change: {{currency.day_change | floatformat:2}}%</li>
+    {% endif %}
+</ul>
 <ul>
 </ul>
 {% endblock %}

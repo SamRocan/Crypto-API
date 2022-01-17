@@ -13,6 +13,7 @@ def index(request):
 
 def currency_page(request, symbol):
     currency = Currency.objects.get(symbol=symbol)
+    print(type(currency.day_change))
     context = {
         'currency':currency,
     }
