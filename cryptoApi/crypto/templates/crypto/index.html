@@ -1,0 +1,10 @@
+{% extends 'crypto/base.html' %}
+{% load static %}
+{% block content %}
+<h1>Currencies</h1>
+<ul>
+{% for currency in currencies %}
+    <li><strong><a href="{% url 'currency_page' currency.symbol %}">{{currency}}</a></strong></li>
+{% endfor %}
+</ul>
+{% endblock %}

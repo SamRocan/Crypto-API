@@ -14,8 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import CurrencyAPIView
-
+from . import views
 urlpatterns = [
-    path('', CurrencyAPIView.as_view())
+    path('', views.index, name='index'),
+    path('currency/<str:symbol>/', views.currency_page, name='currency_page'),
+    path('api/', views.CurrencyAPIView.as_view())
 ]
