@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2r=a#)nh8rd9oz9*nb%9+30rxocl^y*yd&9%ins_1c%36%qb-@'
+SECRET_KEY = '5$1x4*4##!)i+d&+jr+1f8bu*wdvkpi*ov^rtft1x^_*d4sh6)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -122,6 +122,12 @@ USE_TZ = True
 CELERY_BROKER_URL = 'amqp://localhost'
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

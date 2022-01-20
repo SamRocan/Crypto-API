@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from rest_framework import generics
+import requests
 from .models import Currency
 from .serializers import CurrencySerializer
+from django.templatetags.static import static
 
 # Create your views here.
 def index(request):
@@ -13,13 +15,15 @@ def index(request):
 
 def currency_page(request, symbol):
     currency = Currency.objects.get(symbol=symbol)
-    print(type(currency.day_change))
+
+    imageURL = static('images/'+symbol+'.png')
+    print(imageURL)
     context = {
         'currency':currency,
+        'imageURL':imageURL
     }
     return render(request, 'crypto/currency_page.html', context)
 
 class CurrencyAPIView(generics.ListAPIView):
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
-
