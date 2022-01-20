@@ -1,10 +1,21 @@
 {% extends 'crypto/base.html' %}
 {% load static %}
+{% block extraCSS %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/index_style.css' %}">
+{% endblock %}
 {% block content %}
-<h1>Currencies</h1>
-<ul>
+<div class="container-fluid">
+<h1 class="currencies-title" style="margin-bottom: 0px;">Top 10</h1>
+<h1 class='currencies-title' style="padding-top: 0px;">Crypto.</h1>
+<ul class="resultsList">
 {% for currency in currencies %}
-    <li><strong><a href="{% url 'currency_page' currency.symbol %}">{{currency}}</a></strong></li>
+    <a href="{% url 'currency_page' currency.symbol %}" class="product-cell">
+    <li class="resultsList">
+        <strong style="float: left; padding-right: 20px">{{currency.rank}}</strong>
+        <img src="{{ currency.image }}" class="profile-image" width="30" height="30">
+        <strong>{{currency}}</strong>
+    </li></a>
 {% endfor %}
 </ul>
+</div>
 {% endblock %}
