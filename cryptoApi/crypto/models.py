@@ -10,6 +10,7 @@ class Currency(models.Model):
     market_share = models.FloatField(null=True)
     price = models.FloatField(null=True)
     day_change = models.FloatField(null=True)
+    coinlib_id = models.IntegerField(max_length=6, default=859, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Currency'
