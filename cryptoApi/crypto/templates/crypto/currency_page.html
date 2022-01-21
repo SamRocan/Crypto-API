@@ -1,23 +1,56 @@
 <!DOCTYPE html>
 {% extends 'crypto/base.html' %}
 {% load static %}
+{% block extraCSS %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/currency_page_style.css' %}">
+{% endblock %}
 {% block content %}
-<h1>{{currency.name}} <img src={{imageURL|safe}} width="120" height="120"></h1>
-
-<ul>
-    <li>#{{currency.rank}} - {{currency.name}}</li>
-    <li>Symbol: {{currency.symbol}}</li>
-    <li>Market Cap: ${{currency.market_cap}}</li>
-    <li>Market Share: {{currency.market_share | floatformat:2}}%</li>
-    <li>Price: ${{currency.price | floatformat:2}}</li>
-    {% if currency.day_change > 0%}
-    <li style="color: lightgreen">Day Change: {{currency.day_change | floatformat:2}}%</li>
-    {% elif currency.day_change < 0%}
-    <li style="color: indianred">Day Change: {{currency.day_change | floatformat:2}}%</li>
-    {% else %}
-    <li>Day Change: {{currency.day_change | floatformat:2}}%</li>
-    {% endif %}
-</ul>
-<ul>
-</ul>
+<div class="container-fluid">
+    <div class="currency-info">
+        <div class="currency-info-section">
+            <img src={{imageURL|safe}} width="120" height="120">
+        </div>
+        <div class="currency-info-section">
+            {{currency.name}} ({{currency.symbol}})
+        </div>
+        <div class="currency-info-section">
+            #{{currency.rank}}
+        </div>
+        <div class="currency-info-section">
+            Price: ${{currency.price | floatformat:2}}
+        </div>
+        <div class="currency-info-section">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <p>${{currency.price | floatformat:2}}</p>
+                </div>
+                <div class="flip-card-back">
+                    <p>Price</p>
+                </div>
+            </div>
+        </div>
+        <div class="currency-info-section">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    {% if currency.day_change > 0%}
+                    <p style="color: darkgreen">{{currency.day_change | floatformat:2}}%</p>
+                    {% elif currency.day_change < 0%}
+                    <p style="color: indianred">{{currency.day_change | floatformat:2}}%</p>
+                    {% else %}
+                    <p>{{currency.day_change | floatformat:2}}%</p>
+                    {% endif %}
+                </div>
+                <div class="flip-card-back">
+                    <p>Daily Change</p>
+                </div>
+            </div>
+        </div>
+        <div class="currency-info-section">
+            Market Cap: ${{currency.market_cap}}
+        </div>
+        <div class="currency-info-section">
+            Market Share: {{currency.market_share | floatformat:2}}%
+        </div>
+    </div>
+</div>
 {% endblock %}

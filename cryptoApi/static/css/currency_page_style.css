@@ -1,0 +1,141 @@
+bdoy{
+    margin: 0;
+    background-color: lightgray;
+}
+.currency-info{
+    display: grid;
+    gap: 0.5rem;
+    padding-block: 2rem;
+    width: 95%;
+    margin-inline: auto;
+    /*  1 fr is to fill to the end of the row
+        fr = fraction of available space */
+    grid-template-columns: repeat(3, 1fr);
+}
+.currency-info-section{
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background-color: rgba(34,124,230, 0.4);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+@media (min-width: 50em) {
+    .currency-info {
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: repeat(4, auto);
+    }
+
+    .currency-info-section:nth-child(1) {
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
+    .currency-info-section:nth-child(1) img {
+        margin: auto;
+        display: block;
+    }
+
+    .currency-info-section:nth-child(2) {
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 2;
+        grid-column-end: 13;
+        font-size: 4em;
+        font-weight: bold;
+        color: rgba(14, 50, 92, 0.6);
+        text-align: center;
+    }
+
+    .currency-info-section:nth-child(3) {
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        text-align: center;
+        font-weight: bold;
+        font-size: 4em;
+        color: rgba(14, 50, 92, 0.6);
+    }
+
+    .currency-info-section:nth-child(4) {
+        grid-row-start: 2;
+        grid-row-end: 4;
+        grid-column-start: 2;
+        grid-column-end: 11;
+    }
+    .currency-info-section:nth-child(5) {
+        grid-row-start: 3;
+        grid-row-end: 4;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        font-size: 2em;
+        font-weight: bold;
+        color: rgba(14, 50, 92, 0.6);
+        transition:all 1s;
+    }
+
+    .currency-info-section:nth-child(6) {
+        text-align: center;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 11;
+        grid-column-end: 13;
+        transition:all 1s;
+    }
+    .currency-info-section:nth-child(6) p {
+        font-size: 4em;
+        font-weight: bold;
+    }
+    /*
+    Flip cards
+     */
+
+    /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+    .currency-info-section:nth-child(6),
+    .currency-info-section:nth-child(5) {
+        perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    }
+    .currency-info-section:nth-child(6):hover,
+    .currency-info-section:nth-child(5):hover{
+        transform: rotateY(180deg);
+    }
+    /* Do an horizontal flip when you move the mouse over the flip box container */
+    .currency-info-section:nth-child(6):hover .flip-card-inner,
+    .currency-info-section:nth-child(5):hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    /* This container is needed to position the front and back side */
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    /* Position the front and back side */
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+    }
+
+    /* Style the front side (fallback if image is missing) */
+    .flip-card-front {
+    }
+
+    /* Style the back side */
+    .flip-card-back {
+        position: relative;
+        color: rgba(14, 50, 92, 0.6);
+        transform: rotateY(180deg) scale(-1, 1);
+    }
+    .currency-info-section:nth-child(6) .flip-card-back {
+        font-size: 10px;
+    }
+}
