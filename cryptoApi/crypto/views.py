@@ -18,9 +18,12 @@ def currency_page(request, symbol):
 
     imageURL = static('images/'+symbol+'.png')
     print(imageURL)
+    graphURL = "https://widget.coinlib.io/widget?type=chart&theme=light&coin_id=" + str(currency.coinlib_id) + "&pref_coin_id=1505"
+    print(graphURL)
     context = {
         'currency':currency,
-        'imageURL':imageURL
+        'imageURL':imageURL,
+        'graphURL':graphURL
     }
     return render(request, 'crypto/currency_page.html', context)
 
