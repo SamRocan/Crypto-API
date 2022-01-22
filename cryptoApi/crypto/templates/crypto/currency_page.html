@@ -7,7 +7,7 @@
 {% endblock %}
 {% block content %}
 <div class="container-fluid" style="width: 95%; margin-inline: auto; padding-top: 2rem">
-<a class="btn" id="backbutton" href="{% url 'index' %}"> Back to Currencies</a>
+    <a class="button-33" href="{% url 'index' %}" role="button">Back</a>
 </div>
 <div class="container-fluid">
     <div class="currency-info">
@@ -76,7 +76,7 @@
         <div class="currency-info-section">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <p>{{currency.market_cap | intword }}</p>
+                    <p>${{currency.market_cap | intword }}</p>
                 </div>
                 <div class="flip-card-back">
                     <p>Market Cap</p>
