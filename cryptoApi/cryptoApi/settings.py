@@ -25,7 +25,7 @@ SECRET_KEY = '5$1x4*4##!)i+d&+jr+1f8bu*wdvkpi*ov^rtft1x^_*d4sh6)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1'] #insert heroku site url here
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -122,6 +123,7 @@ USE_TZ = True
 
 CELERY_BROKER_URL = 'amqp://localhost'
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
