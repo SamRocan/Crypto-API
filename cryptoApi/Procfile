@@ -1,0 +1,1 @@
+web: gunicorn cryptoAPI.wsgi --log-file -
