@@ -11,12 +11,20 @@ function dark_light_mode(){
         for (i = 0; i < containers.length; i++) {
             containers[i].style.color = 'rgba(233,233,233,0.8)';
         }
+        links = document.getElementsByClassName('d-block')
+        for (i =0; i<links.length; i++) {
+            links[i].style.color = 'rgba(233,233,233,0.8)';
+        }
 
     } else {
         document.body.style.backgroundColor = '#f8f9d2';
         document.body.style.backgroundImage = 'linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%)'
         for (i = 0; i < containers.length; i++) {
             containers[i].style.color = 'rgba(14, 50, 92, 0.6)';
+        }
+        links = document.getElementsByClassName('d-block')
+        for (i =0; i<links.length; i++) {
+            links[i].style.color = 'rgba(14, 50, 92, 0.6)';
         }
     }
 }
