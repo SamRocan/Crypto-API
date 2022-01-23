@@ -56,6 +56,10 @@ body{
     background-color: rgba(34,124,230, 0.4);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+.carousel a {
+    text-decoration: none;
+    color: rgba(14, 50, 92, 0.6);
+}
 /*(min-width: 575px)*/
 @media (max-width: 575px) {
     currency-info {
@@ -140,6 +144,17 @@ body{
         grid-row-start: 5;
         grid-row-end: 6;
         grid-column-start: 6;
+        grid-column-end: 13;
+        font-size: 1em;
+        font-weight: bold;
+        color: rgba(14, 50, 92, 0.6);
+        text-align: center;
+        transition:all 1s;
+    }
+    .currency-info-section:nth-child(9) {
+        grid-row-start: 6;
+        grid-row-end: 7;
+        grid-column-start: 1;
         grid-column-end: 13;
         font-size: 1em;
         font-weight: bold;
@@ -295,6 +310,17 @@ body{
         grid-row-start: 3;
         grid-row-end: 4;
         grid-column-start: 6;
+        grid-column-end: 13;
+        font-size: 1em;
+        font-weight: bold;
+        color: rgba(14, 50, 92, 0.6);
+        text-align: center;
+        transition:all 1s;
+    }
+    .currency-info-section:nth-child(9) {
+        grid-row-start: 5;
+        grid-row-end: 6;
+        grid-column-start: 1;
         grid-column-end: 13;
         font-size: 1em;
         font-weight: bold;
@@ -465,11 +491,6 @@ body{
         color: rgba(14, 50, 92, 0.6);
         text-align: center;
         transition:all 1s;
-    }
-    .carousel a {
-        text-decoration: none;
-        color: rgba(14, 50, 92, 0.6);
-    ;
     }
     /*
     Flip cards
