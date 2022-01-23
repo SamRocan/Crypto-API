@@ -94,6 +94,21 @@
                 </div>
             </div>
         </div>
+        <div class="currency-info-section">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                {% for title, link in news %}
+                    {% if forloop.first %}
+                    <div class="carousel-item active">
+                    {% else %}
+                    <div class="carousel-item">
+                    {% endif %}
+                        <a href="{{link}}" class="d-block w-100">{{title}}</a>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
