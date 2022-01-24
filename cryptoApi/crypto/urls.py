@@ -18,5 +18,5 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('currency/<str:symbol>/', views.currency_page, name='currency_page'),
-    path('api/', views.CurrencyAPIView.as_view())
+    path('api/', views.CurrencyAPIView.as_view(), name='api_page')
 ]
