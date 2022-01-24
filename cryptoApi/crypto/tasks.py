@@ -50,10 +50,12 @@ def create_currency():
             day_change=day_change
         )
         sleep(5)
+    print("Data Created")
+
 
 @shared_task
 def update_currency():
-    print("Creating crypto currency data")
+    print("Updating crypto currency data")
     req = Request("https://www.slickcharts.com/currency", headers={'User-Agent': 'Mozilla/5.0'})
     html = urlopen(req).read()
     soup = BeautifulSoup(html, 'html.parser')
@@ -73,11 +75,13 @@ def update_currency():
         day_change = float(currency[5].text)
 
         data = {'rank':rank, 'image':image, 'name':name, 'symbol':symbol, 'market_cap':market_cap, 'market_share':market_share, 'price':price, 'day_change':day_change}
-
+        print(data)
         Currency.objects.filter(rank=rank).update(**data)
 
-create_currency()
-
+if(len(Currency.objects.all()) != 10):
+    create_currency()
+print(len(Currency.objects.all()))
+#
 while True:
     sleep(60)
     update_currency()
