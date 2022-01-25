@@ -4,6 +4,36 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 from .models import Currency
 
+COIN_IDS = {
+    'BTC':859,
+    'ETH':145,
+    'USDT':637,
+    'BNB':1209,
+    'OI':648685,
+    'ADA':122882,
+    'XRP':619,
+    'SOL':859, #graph not found
+    'LUNA':1511102,
+    'DOGE':280,
+    'DOT':250,
+    'AVAX':1512453,
+    'BUSD':1511323,
+    'SHIB':859, #graph not found
+    'UST':859, #graph not found
+    'MATIC':1510954,
+    'ATOM':392,
+    'WBTC':859,#graph not found
+    'DAI':345508,
+    'CRO':1510617,
+}
+
+
+def matchCoinLib(symbol):
+    if(symbol in COIN_IDS.keys()):
+        return COIN_IDS[symbol]
+    return 859
+
+
 # to run worker
 # celery -A cryptoApi worker --loglevel=info
 
@@ -73,8 +103,9 @@ def update_currency():
         market_share = float(currency[3].text[:len(currency[3].text)-1])
         price = float(currency[4].text[1:len(currency[4].text)].replace(',',''))
         day_change = float(currency[5].text)
+        coinlib_id = matchCoinLib(symbol)
 
-        data = {'rank':rank, 'image':image, 'name':name, 'symbol':symbol, 'market_cap':market_cap, 'market_share':market_share, 'price':price, 'day_change':day_change}
+        data = {'rank':rank, 'image':image, 'name':name, 'symbol':symbol, 'market_cap':market_cap, 'market_share':market_share, 'price':price, 'day_change':day_change, coinlib_id':coinlib_id}
         print(data)
         Currency.objects.filter(rank=rank).update(**data)
 
