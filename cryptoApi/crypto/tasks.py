@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from time import sleep
 from celery import shared_task
 from bs4 import BeautifulSoup
@@ -104,8 +105,9 @@ def update_currency():
         price = float(currency[4].text[1:len(currency[4].text)].replace(',',''))
         day_change = float(currency[5].text)
         coinlib_id = matchCoinLib(symbol)
+        last_updated = datetime.now(tz=timezone.utc)
 
-        data = {'rank':rank, 'image':image, 'name':name, 'symbol':symbol, 'market_cap':market_cap, 'market_share':market_share, 'price':price, 'day_change':day_change, coinlib_id':coinlib_id}
+        data = {'rank':rank, 'image':image, 'name':name, 'symbol':symbol, 'market_cap':market_cap, 'market_share':market_share, 'price':price, 'day_change':day_change, 'coinlib_id':coinlib_id, 'last_updated':last_updated}
         print(data)
         Currency.objects.filter(rank=rank).update(**data)
 
