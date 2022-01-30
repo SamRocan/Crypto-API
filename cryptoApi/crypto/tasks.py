@@ -34,10 +34,12 @@ def matchCoinLib(symbol):
         return COIN_IDS[symbol]
     return 859
 
-
 # to run worker
 # celery -A cryptoApi worker --loglevel=info
-
+# or
+# celery -A cryptoApi worker -l info
+# or
+# celery -A cryptoApi beat -l info
 @shared_task
 def create_currency():
     print("Creating crypto currency data")
@@ -59,16 +61,8 @@ def create_currency():
         market_share = float(currency[3].text[:len(currency[3].text)-1])
         price = float(currency[4].text[1:len(currency[4].text)].replace(',',''))
         day_change = float(currency[5].text)
+        coinlib_id = matchCoinLib(symbol)
 
-        '''currency_obj.append(int(currency[0].text))
-        currency_obj.append(currency[1].find("img")['src'])
-        currency_obj.append(currency[1].text.split()[0])
-        currency_obj.append(currency[1].text.split()[1][1:len(currency[1].text.split()[1])-1])
-        currency_obj.append(int((currency[2].text).replace(',','')))
-        currency_obj.append(float(currency[3].text[:len(currency[3].text)-1]))
-        currency_obj.append(float(currency[4].text[1:len(currency[4].text)].replace(',','')))
-        currency_obj.append(float(currency[5].text))
-        print(currency_obj)'''
 
         Currency.objects.create(
             rank=rank,
@@ -78,7 +72,8 @@ def create_currency():
             market_cap=market_cap,
             market_share=market_share,
             price=price,
-            day_change=day_change
+            day_change=day_change,
+            coinlib_id=coinlib_id
         )
         sleep(5)
     print("Data Created")
@@ -114,7 +109,7 @@ def update_currency():
 if(len(Currency.objects.all()) != 10):
     create_currency()
 print(len(Currency.objects.all()))
-#
+
 while True:
     sleep(60)
     update_currency()

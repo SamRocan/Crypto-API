@@ -1,1 +1,2 @@
 web: gunicorn cryptoAPI.wsgi --log-file -
+worker: celery -A cryptoApi worker -l info
